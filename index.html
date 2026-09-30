@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffe8a2" />
+    <meta name="description" content="A cheerful sky platform game starring a golden, red-haired Hulk." />
+    <title>Golden Hulk: Skybound</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <div class="brand"><span class="brand-star">✦</span> GOLDEN HULK <span class="brand-small">SKYBOUND</span></div>
+        <button id="soundButton" class="icon-button" type="button" aria-label="Mute sound" title="Toggle sound">♪</button>
+      </header>
+
+      <section class="game-frame" aria-label="Golden Hulk sky platform game">
+        <canvas id="game" width="960" height="540" aria-label="Game view"></canvas>
+
+        <div class="hud" aria-live="polite">
+          <div class="hud-pill"><span class="hud-icon">☀</span><span id="sunCount">0</span><span class="hud-muted">/ 24</span></div>
+          <div class="hud-pill hearts" id="hearts" aria-label="3 hearts">♥ ♥ ♥</div>
+          <div class="hud-pill power-pill" id="powerPill">✦ Ready for adventure</div>
+        </div>
+
+        <div id="toast" class="toast" aria-live="polite"></div>
+
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <div class="eyebrow">A bright little sky adventure</div>
+            <h1 id="overlayTitle">Golden Hulk<br /><em>Skybound!</em></h1>
+            <p id="overlayText">Hop across the clouds, collect sunshine, grow with a mushroom, and grab a star to become super strong!</p>
+            <div class="legend">
+              <span><b>← →</b> move</span>
+              <span><b>Space / ↑</b> jump</span>
+              <span><b>R</b> restart</span>
+            </div>
+            <button id="playButton" class="play-button" type="button">Let’s play <span>➜</span></button>
+          </div>
+        </div>
+
+        <div class="touch-controls" aria-label="Touch game controls">
+          <div class="move-controls">
+            <button class="control-button" data-control="left" aria-label="Move left" type="button">◀</button>
+            <button class="control-button" data-control="right" aria-label="Move right" type="button">▶</button>
+          </div>
+          <button class="control-button jump-button" data-control="jump" aria-label="Jump" type="button">JUMP ↑</button>
+        </div>
+      </section>
+
+      <footer class="help-text">Collect at least 12 suns and reach the rainbow gate. Stars let you bump storm clouds away!</footer>
+    </main>
+    <script src="game.js"></script>
+  </body>
+</html>

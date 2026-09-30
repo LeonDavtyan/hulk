@@ -1,0 +1,66 @@
+:root {
+  font-family: ui-rounded, "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
+  color: #623717;
+  background: #fff4cf;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 50% -10%, #fffdf0 0, #fff0bb 52%, #ffe5a4 100%); }
+button { font: inherit; }
+
+.game-shell { width: min(100%, 1280px); margin: 0 auto; padding: 18px clamp(12px, 3vw, 36px) 22px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; min-height: 42px; margin-bottom: 12px; }
+.brand { display: flex; align-items: baseline; gap: 8px; font-size: clamp(17px, 2.4vw, 25px); font-weight: 1000; letter-spacing: -.04em; color: #9d4b21; text-shadow: 0 2px #fff8dc; }
+.brand-star { color: #f6ae15; font-size: 1.2em; }
+.brand-small { font-size: .55em; letter-spacing: .18em; color: #c77938; }
+.icon-button { width: 40px; height: 40px; border: 2px solid #e9c377; border-radius: 50%; background: #fff8dc; color: #9c632b; font-size: 23px; font-weight: 900; cursor: pointer; box-shadow: 0 3px 0 #d8a958; }
+.icon-button:active { transform: translateY(2px); box-shadow: 0 1px 0 #d8a958; }
+.game-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; border: 5px solid #fff9e6; border-radius: 22px; background: #ffe8a1; box-shadow: 0 8px 0 #dfb86a, 0 18px 35px #9c642c33; touch-action: none; user-select: none; }
+canvas { display: block; width: 100%; height: 100%; object-fit: contain; }
+.hud { position: absolute; z-index: 3; top: 16px; left: 17px; right: 17px; display: flex; gap: 9px; align-items: center; pointer-events: none; }
+.hud-pill { min-height: 39px; padding: 6px 13px; border: 2px solid #fff8da; border-radius: 99px; background: #fff5d9e8; box-shadow: 0 3px 0 #c68e4d55; color: #8e4b23; font-size: 17px; font-weight: 1000; white-space: nowrap; }
+.hud-icon { color: #f8aa08; padding-right: 6px; }
+.hud-muted { opacity: .55; font-size: 12px; }
+.hearts { color: #ed7058; letter-spacing: 3px; }
+.power-pill { margin-left: auto; font-size: 13px; }
+.toast { position: absolute; z-index: 6; left: 50%; top: 76px; transform: translate(-50%, -10px); padding: 7px 17px; border-radius: 99px; background: #fff8dd; color: #995321; border: 2px solid white; box-shadow: 0 4px 15px #9d5b3733; font-weight: 1000; opacity: 0; transition: opacity .2s, transform .2s; pointer-events: none; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+.overlay { position: absolute; z-index: 7; inset: 0; display: flex; align-items: center; justify-content: center; padding: 16px; background: #7d4a2066; backdrop-filter: blur(3px); }
+.overlay.hidden { display: none; }
+.overlay-card { width: min(470px, 100%); padding: clamp(18px, 3.2vw, 32px); border: 4px solid white; border-radius: 28px; background: linear-gradient(160deg, #fffdf0, #ffe3a7); box-shadow: 0 9px 0 #bb813a, 0 20px 35px #60320d55; text-align: center; }
+.eyebrow { color: #d9812e; font-size: 12px; font-weight: 1000; letter-spacing: .16em; text-transform: uppercase; }
+h1 { margin: 8px 0 10px; color: #a44d28; font-size: clamp(35px, 5vw, 58px); line-height: .98; letter-spacing: -.055em; text-shadow: 0 3px #ffd46d; }
+h1 em { color: #f2a91a; font-style: normal; }
+.overlay-card p { max-width: 360px; margin: 0 auto 17px; color: #865429; font-weight: 700; line-height: 1.45; }
+.legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 19px; font-size: 12px; color: #7d552e; }
+.legend span { padding: 5px 8px; border: 1px solid #efd49e; border-radius: 8px; background: #fffaf0; }
+.legend b { color: #b65424; }
+.play-button { min-width: 180px; padding: 12px 20px; border: 3px solid #ffefbb; border-radius: 99px; background: #ed723b; box-shadow: 0 5px 0 #a94929; color: white; font-size: 18px; font-weight: 1000; cursor: pointer; }
+.play-button span { margin-left: 10px; }
+.play-button:hover { background: #f88840; }
+.play-button:active { transform: translateY(4px); box-shadow: 0 1px 0 #a94929; }
+.touch-controls { position: absolute; z-index: 4; left: 16px; right: 16px; bottom: 14px; display: none; justify-content: space-between; align-items: end; pointer-events: none; }
+.move-controls { display: flex; gap: 9px; }
+.control-button { width: 64px; height: 62px; border: 3px solid #fff8e7; border-radius: 19px; background: #fff8dcbb; box-shadow: 0 4px 0 #b97e4477; color: #9c552a; font-size: 26px; font-weight: 1000; pointer-events: auto; touch-action: none; }
+.control-button.pressed { transform: translateY(3px); box-shadow: 0 1px 0 #b97e4477; background: #ffe09d; }
+.jump-button { width: 90px; background: #f7a341d9; color: white; font-size: 16px; }
+.help-text { margin-top: 19px; color: #9c6a36; font-size: 13px; font-weight: 700; text-align: center; }
+@media (hover: none), (pointer: coarse) { .touch-controls { display: flex; } }
+@media (max-width: 620px) {
+  .game-shell { padding: 8px 5px 12px; }
+  .topbar { padding: 0 8px; margin-bottom: 6px; }
+  .brand { font-size: 16px; }
+  .brand-small { font-size: .5em; }
+  .game-frame { border-width: 3px; border-radius: 12px; aspect-ratio: 4 / 3; }
+  .hud { top: 8px; left: 7px; right: 7px; gap: 4px; }
+  .hud-pill { min-height: 29px; padding: 4px 7px; font-size: 12px; border-width: 1px; }
+  .hud-muted { font-size: 10px; }
+  .power-pill { font-size: 10px; max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
+  .touch-controls { display: flex; left: 9px; right: 9px; bottom: 9px; }
+  .control-button { width: 49px; height: 48px; border-radius: 13px; font-size: 19px; }
+  .jump-button { width: 72px; font-size: 13px; }
+  .overlay-card { padding: 15px; border-radius: 18px; }
+  .overlay-card p { font-size: 13px; margin-bottom: 10px; }
+  .legend { margin-bottom: 11px; gap: 4px; font-size: 10px; }
+  .help-text { margin: 13px 10px; font-size: 11px; }
+}
